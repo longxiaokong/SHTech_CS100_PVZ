@@ -1,0 +1,12 @@
+/Users/lxk/Desktop/hw8/build/CMakeFiles/PvZ.dir
+/Users/lxk/Desktop/hw8/build/CMakeFiles/ALL_BUILD.dir
+/Users/lxk/Desktop/hw8/build/CMakeFiles/ZERO_CHECK.dir
+/Users/lxk/Desktop/hw8/build/SOIL/CMakeFiles/SOIL.dir
+/Users/lxk/Desktop/hw8/build/SOIL/CMakeFiles/ALL_BUILD.dir
+/Users/lxk/Desktop/hw8/build/SOIL/CMakeFiles/ZERO_CHECK.dir
+/Users/lxk/Desktop/hw8/build/src/Framework/CMakeFiles/Framework.dir
+/Users/lxk/Desktop/hw8/build/src/GameObject/CMakeFiles/GameObject.dir
+/Users/lxk/Desktop/hw8/build/src/GameWorld/CMakeFiles/GameWorld.dir
+/Users/lxk/Desktop/hw8/build/src/Background/CMakeFiles/Background.dir
+/Users/lxk/Desktop/hw8/build/src/Plant/CMakeFiles/Plant.dir
+/Users/lxk/Desktop/hw8/build/src/Seed/CMakeFiles/Seed.dir
