@@ -12,7 +12,7 @@
 Sunflower::Sunflower(pGameWorld pWorld, int x, int y)
 : Plant(pWorld, PlantType::PLANT_SUNFLOWER, x, y), m_produce_timer(randInt(30, 600)){m_produce_timer.StartTimer();}
 
-void Sunflower::UpdateArbitrary(){
+void Sunflower::Update(){
   m_produce_timer.Update();
   if(m_produce_timer.isTimingEnded())
   {

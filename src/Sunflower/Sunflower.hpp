@@ -16,9 +16,7 @@ public:
   using std::enable_shared_from_this<Sunflower>::shared_from_this;
   Sunflower(pGameWorld pWorld, int x, int y);
   virtual ~Sunflower() = default;
-  virtual void UpdateArbitrary() override;
-  virtual void OnClick() override{};
-  void switchTo(PlantType);
+  virtual void Update() override;
   static int gridToPixelX(int x) {return FIRST_COL_CENTER + (x - 1) * LAWN_GRID_WIDTH;}
   static int gridToPixelY(int y) {return FIRST_ROW_CENTER + (y - 1) * LAWN_GRID_HEIGHT;}
 private:

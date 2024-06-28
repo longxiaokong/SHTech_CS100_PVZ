@@ -16,16 +16,16 @@ void Plant::OnClick(){
   getGameWorld() -> PlantAt(this);
 }
 
-void Plant::Update(){
-  if(m_type != PlantType::PLANT_NONE && m_health <= 0)
-  {
-    m_health = 0;
-    m_type = PlantType::PLANT_NONE;
-    ChangeImage(plantImageID[static_cast<std::size_t>(PlantType::PLANT_NONE)]);
-  }
-  UpdateArbitrary();
+Plant::~Plant(){
+  if(m_type != PlantType::PLANT_NONE)
+    getGameWorld() -> PlantAtPos(GetGridX(), GetGridY(), PlantType::PLANT_NONE);
+  // when a plant is dead, an empty grid must be push in.
 }
 
+/*
+ Switch the type and the image to the corresponding type,
+ does NOT change the plant's behavior.
+ */
 void Plant::switchTo(PlantType type)
 {
   m_type = type;

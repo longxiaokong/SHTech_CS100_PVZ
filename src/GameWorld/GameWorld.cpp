@@ -9,6 +9,7 @@
 #include "ProducedSun.hpp"
 #include "TextBase.hpp"
 #include "Sunflower.hpp"
+#include "Wallnut.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -47,9 +48,11 @@ LevelStatus GameWorld::Update() {
     m_natural_sun_timer -> SetTimer(NATUAL_SUN_DROP_INTERVAL);
   }
   
-  for(const auto& gameObject: m_object_list)
+  // Step 2: update all objects.
+  for(auto& gameObject: m_object_list)
     gameObject -> Update();
   
+  // Step 3: remove all dead objects.
   for(auto it = m_object_list.begin(); it != m_object_list.end();)
   {
     if((*it) -> isDead())
@@ -67,6 +70,7 @@ void GameWorld::CleanUp() {
   m_natural_sun_timer = nullptr;
   //  Step 2: remove all items from object list.
   m_object_list.clear();
+  m_object_list.clear(); // twice because when plants are deconstructed, they would automatically push in an empty grid.
   //  Step 3: reset current holding plant.
   m_currentCoolDownMask = nullptr;
   m_holdingPlant = PlantType::PLANT_NONE;
@@ -132,10 +136,12 @@ void GameWorld::PlantAtPos(int x, int y, PlantType type){
   switch (type) {
     case PlantType::PLANT_NONE:
       m_object_list.push_back(std::make_shared<Plant>(shared_from_this(), PlantType::PLANT_NONE, x, y));
+      break;
     case PlantType::PLANT_SUNFLOWER:
       m_object_list.push_back(std::make_shared<Sunflower>(shared_from_this(), x, y));
       break;
-      
+    case PlantType::PLANT_WALLNUT:
+      m_object_list.push_back(std::make_shared<Wallnut>(shared_from_this(), x, y));
     default:
       break;
   }
