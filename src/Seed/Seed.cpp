@@ -10,7 +10,7 @@
 #include "GameWorld.hpp"
 
 Seed::Seed(pGameWorld pWorld,int slot, PlantType type)
-: Slot(pWorld, slot, seedImageID[static_cast<std::size_t>(type)]), m_slot_num(slot) ,m_type(type), m_cost(seedCost[static_cast<std::size_t>(type)]) {}
+: Slot(pWorld, slot, type, LAYER_UI, seedImageID[static_cast<std::size_t>(type)]) {}
 
 void Seed::OnClick() {
   getGameWorld() -> TryHoldSeed(this);

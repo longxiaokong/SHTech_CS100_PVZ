@@ -18,6 +18,7 @@ public:
   virtual ~Background() = default;
   virtual void Update() override{}
   virtual void OnClick() override{}
+  virtual bool isDead() override{return false;}
 private:
 
 };

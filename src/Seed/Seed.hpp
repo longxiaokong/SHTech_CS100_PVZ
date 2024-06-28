@@ -20,14 +20,9 @@ public:
   virtual ~Seed() = default;
   virtual void Update() override{};
   virtual void OnClick() override;
-  static int slotToPixelX(int slot) {return SEED_SLOT_FIRST_COL_CENTER + (slot - 1) * (SEED_SLOT_WIDTH + SEED_SLOT_SPACING);}
-  std::size_t getSlotNum()const{return m_slot_num;}
-  unsigned getCost()const{return m_cost;}
-  PlantType getPlantType()const{return m_type;}
+  virtual bool isDead() override{return false;}
+  unsigned getCost()const{return seedCost[static_cast<std::size_t>(m_type)];}
 private:
-  std::size_t m_slot_num;
-  PlantType m_type;
-  unsigned m_cost;
 };
 
 #endif /* Background_hpp */

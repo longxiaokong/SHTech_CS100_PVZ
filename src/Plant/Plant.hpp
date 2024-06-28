@@ -26,6 +26,7 @@ public:
     }
   }
   virtual void OnClick() override;
+  virtual bool isDead() override {return m_type != PlantType::PLANT_NONE && m_health <= 0;}
   void switchTo(PlantType);
   static int gridToPixelX(int x) {return FIRST_COL_CENTER + (x - 1) * LAWN_GRID_WIDTH;}
   static int gridToPixelY(int y) {return FIRST_ROW_CENTER + (y - 1) * LAWN_GRID_HEIGHT;}

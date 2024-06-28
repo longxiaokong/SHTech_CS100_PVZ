@@ -14,6 +14,7 @@
 class Background;
 class Plant;
 class Seed;
+class CoolDownMask;
 
 class GameWorld : public WorldBase, public std::enable_shared_from_this<GameWorld> {
 public:
@@ -30,6 +31,8 @@ public:
   bool TryHoldSeed(const Seed*);
   
   bool PlantAt(Plant*);
+  
+  bool HasCoolDown(std::shared_ptr<GameObject>) const;
 
 private: 
   std::list<std::shared_ptr<GameObject> > objectList;
@@ -38,6 +41,7 @@ private:
   std::size_t m_holdingFromSlot = -1;
   unsigned m_sunCnt = 100;
   std::shared_ptr<TextBase> m_sunText = nullptr;
+  std::shared_ptr<CoolDownMask> m_currentCoolDownMask;
 };
 
 #endif // !GAMEWORLD_HPP__

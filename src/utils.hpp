@@ -146,4 +146,22 @@ const int plantHealth[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
   200
 };
 
+const int seedCoolDown[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  0,
+  240,
+  240,
+  900,
+  1200,
+  240
+};
+
+const PlantType slotPlant[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  PlantType::PLANT_NONE,
+  PlantType::PLANT_SUNFLOWER,
+  PlantType::PLANT_PEASHOOTER,
+  PlantType::PLANT_WALLNUT,
+  PlantType::PLANT_CHERRY_BOMB,
+  PlantType::PLANT_REPEATER
+};
+
 #endif // !UTILS_HPP__

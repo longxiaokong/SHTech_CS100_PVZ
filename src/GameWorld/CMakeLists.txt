@@ -13,6 +13,7 @@ target_link_libraries(
   Background
   Plant
   Seed
+  CoolDownMask
 )
 
 target_include_directories(
@@ -23,5 +24,6 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/GameObject/
   ${CMAKE_SOURCE_DIR}/src/Background/
   ${CMAKE_SOURCE_DIR}/src/Plant/
+  ${CMAKE_SOURCE_DIR}/src/CoolDownMask/
   ${CMAKE_SOURCE_DIR}/src/Seed/
 )
