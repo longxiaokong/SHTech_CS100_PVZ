@@ -14,7 +14,14 @@ public:
   GameObject(pGameWorld pWorld,ImageID imageID, int x, int y, LayerID layer, int width, int height, AnimID animID);
   virtual ~GameObject() = default;
   virtual bool isDead() = 0;
+  virtual int getHarm() {return 0;}
+  virtual void addHealth(int){}
   pGameWorld getGameWorld(){return m_pWorld;}
+  int GetGridX() {return (GetX() - FIRST_COL_CENTER) / LAWN_GRID_WIDTH + 1;}
+  int GetGridY() {return (GetY() - FIRST_ROW_CENTER) / LAWN_GRID_HEIGHT + 1;}
+  virtual bool is_plant(){return false;}
+  virtual bool is_zombie(){return false;}
+  virtual bool is_projectile(){return false;}
 private:
   pGameWorld m_pWorld;
 };

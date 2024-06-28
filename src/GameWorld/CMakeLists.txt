@@ -18,6 +18,8 @@ target_link_libraries(
   Sunflower
   Wallnut
   Shovel
+  Zombie
+  ZombieRegular
 )
 
 target_include_directories(
@@ -34,4 +36,6 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Sunflower/
   ${CMAKE_SOURCE_DIR}/src/Wallnut/
   ${CMAKE_SOURCE_DIR}/src/Shovel/
+  ${CMAKE_SOURCE_DIR}/src/Zombie/
+  ${CMAKE_SOURCE_DIR}/src/ZombieRegular/
 )

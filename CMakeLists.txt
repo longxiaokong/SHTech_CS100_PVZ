@@ -48,6 +48,8 @@ add_subdirectory(src/MovingObject/)
 add_subdirectory(src/Sunflower/)
 add_subdirectory(src/Wallnut/)
 add_subdirectory(src/Shovel/)
+add_subdirectory(src/Zombie/)
+add_subdirectory(src/ZombieRegular/)
 #↑↑↑↑↑↑↑↑↑↑↑ ADD YOUR SUBDIRECTORIES HERE ↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 add_executable(

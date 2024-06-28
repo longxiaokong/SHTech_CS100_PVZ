@@ -50,6 +50,8 @@ public:
                          
   void spawnProducedSunAt(int x, int y, int worth=SUN_VALUE_DEFAULT);
   
+  void spawnZombieAt(int row_y, int x=WINDOW_WIDTH - 1, ZombieType type=ZombieType::ZOMBIE_REGULAR);
+  
   void PlantAtPos(int x, int y, PlantType type);
   
   bool GetHoldingShovel() {return m_holding_shovel;}
@@ -60,7 +62,11 @@ public:
     m_currentCoolDownMask = nullptr;
     m_holding_shovel = true;
   }
-
+  
+  bool areColliding(std::shared_ptr<GameObject>, std::shared_ptr<GameObject>);
+  
+  void UpdateZombieState();
+  
 private:
   std::list<std::shared_ptr<GameObject> > m_object_list;
   std::shared_ptr<Background> m_background = nullptr;
@@ -70,6 +76,8 @@ private:
   std::shared_ptr<TextBase> m_sunText = nullptr;
   std::shared_ptr<CoolDownMask> m_currentCoolDownMask;
   std::shared_ptr<Timer> m_natural_sun_timer;
+  std::list<std::list<std::shared_ptr<GameObject> >::iterator> m_zombie_it_list;
+  int m_row_zombie_cnt[6] = {0};
   bool m_holding_shovel;
 };
 

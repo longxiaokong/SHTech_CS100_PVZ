@@ -181,4 +181,29 @@ const int NATUAL_SUN_DROP_INITIAL = 180;
 const int NATUAL_SUN_DROP_INTERVAL = 300;
 const int PRODUCE_SUN_INTERVAL = 600;
 
+enum class ZombieType{
+  ZOMBIE_REGULAR,
+  ZOMBIE_BUCKET,
+  ZOMBIE_PULT,
+  ZOMBIE_TYPE_CNT
+};
+
+const int ZombieHealth[static_cast<std::size_t>(ZombieType::ZOMBIE_TYPE_CNT)] = {
+  200,
+  1300,
+  340
+};
+
+const int ZombieImgID[static_cast<std::size_t>(ZombieType::ZOMBIE_TYPE_CNT)] = {
+  IMGID_REGULAR_ZOMBIE,
+  IMGID_BUCKET_HEAD_ZOMBIE,
+  IMGID_POLE_VAULTING_ZOMBIE
+};
+
+const int ZOMBIE_SPEED_REGULAR = -1;
+const int ZOMBIE_SPEED_RUNNING = -2;
+const int ZOMBIE_WIDTH = 20;
+const int ZOMBIE_HEIGHT = 80;
+const int ZOMBIE_HARM_REGULAR = 3;
+
 #endif // !UTILS_HPP__

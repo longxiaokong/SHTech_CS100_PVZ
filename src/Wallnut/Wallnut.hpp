@@ -16,8 +16,7 @@ public:
   Wallnut(pGameWorld pWorld, int x, int y);
   virtual ~Wallnut() = default;
   virtual void Update() override;
-  static int gridToPixelX(int x) {return FIRST_COL_CENTER + (x - 1) * LAWN_GRID_WIDTH;}
-  static int gridToPixelY(int y) {return FIRST_ROW_CENTER + (y - 1) * LAWN_GRID_HEIGHT;}
+  virtual bool is_plant() override{return true;};
 private:
   bool m_cracked;
 };

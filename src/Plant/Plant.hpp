@@ -24,10 +24,8 @@ public:
   void switchTo(PlantType);
   int getHealth() {return m_health;}
   void setHealth(int new_health) {m_health = new_health;}
-  void addHealth(int delta) {m_health += delta;}
+  void addHealth(int delta) override {m_health += delta;}
   PlantType getPlantType() {return m_type;}
-  int GetGridX() {return (GetX() - FIRST_COL_CENTER) / LAWN_GRID_WIDTH + 1;}
-  int GetGridY() {return (GetY() - FIRST_ROW_CENTER) / LAWN_GRID_HEIGHT + 1;}
   static int gridToPixelX(int x) {return FIRST_COL_CENTER + (x - 1) * LAWN_GRID_WIDTH;}
   static int gridToPixelY(int y) {return FIRST_ROW_CENTER + (y - 1) * LAWN_GRID_HEIGHT;}
 private:
