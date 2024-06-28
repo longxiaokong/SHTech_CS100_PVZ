@@ -86,6 +86,11 @@ bool GameWorld::TryHoldSeed(const Seed* pSeed){
 bool GameWorld::PlantAt(Plant *plant){
   if(m_holdingPlant == PlantType::PLANT_NONE)
     return true;
+  // wallnut healing: only work for wallnut, so direct judgement rather than some functions.
+  if(plant -> getPlantType() != PlantType::PLANT_NONE &&
+     !(plant -> getPlantType() == PlantType::PLANT_WALLNUT &&
+       m_holdingPlant == PlantType::PLANT_WALLNUT))
+    return false;
   if(m_sunCnt < seedCost[static_cast<size_t>(m_holdingPlant)])
     return false;
   m_object_list.push_back(m_currentCoolDownMask);

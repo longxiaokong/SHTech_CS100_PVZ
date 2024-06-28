@@ -16,6 +16,15 @@ void Plant::OnClick(){
   getGameWorld() -> PlantAt(this);
 }
 
+void Plant::Update(){
+  if(m_type != PlantType::PLANT_NONE && m_health <= 0)
+  {
+    m_health = 0;
+    m_type = PlantType::PLANT_NONE;
+    ChangeImage(plantImageID[static_cast<std::size_t>(PlantType::PLANT_NONE)]);
+  }
+}
+
 void Plant::switchTo(PlantType type)
 {
   m_type = type;
