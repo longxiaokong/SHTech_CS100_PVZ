@@ -65,7 +65,9 @@ public:
   
   bool areColliding(std::shared_ptr<GameObject>, std::shared_ptr<GameObject>);
   
-  bool anyZombieOnRow(int row){return m_row_zombie_cnt[row] > 0;}
+  bool anyZombieOnRow(int row){ return m_row_zombie_cnt[row] > 0;}
+  
+  void spawnProjectileAt(int x, int y, ProjectileType type);
   
   void UpdateZombieState();
   

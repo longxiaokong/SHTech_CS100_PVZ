@@ -14,6 +14,8 @@
 #include "Zombie.hpp"
 #include "ZombieRegular.hpp"
 #include "Pea.hpp"
+#include "PeaShooter.hpp"
+#include "Repeater.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -21,9 +23,6 @@ GameWorld::GameWorld() {}
 GameWorld::~GameWorld() {}
 
 void GameWorld::Init() {
-  spawnZombieAt(1);
-  for(int i = 1; i <= 20; i ++)
-  m_object_list.push_back(std::make_shared<Pea>(shared_from_this(), FIRST_COL_CENTER, FIRST_ROW_CENTER));
   // Step 1: create background.
   m_background = std::make_shared<Background>(shared_from_this());
   m_object_list.push_back(m_background);
@@ -46,12 +45,18 @@ void GameWorld::Init() {
   m_currentCoolDownMask = nullptr;
   
   // Step 6: init sun counter
-  m_sunCnt = 100;
+  m_sunCnt = 1000;
   m_sunText = std::make_shared<TextBase>(SUN_CNT_COL_CENTER, SUN_CNT_ROW_CENTER, std::to_string(m_sunCnt));
   
   // Step 7: init sun generator
   m_natural_sun_timer = std::make_shared<Timer>(NATUAL_SUN_DROP_INITIAL);
   m_natural_sun_timer -> StartTimer();
+  
+  spawnZombieAt(1);
+  spawnZombieAt(1);
+  spawnZombieAt(1);
+  spawnZombieAt(1);
+  spawnZombieAt(1);
 }
 
 LevelStatus GameWorld::Update() {
@@ -201,6 +206,13 @@ void GameWorld::PlantAtPos(int x, int y, PlantType type){
       break;
     case PlantType::PLANT_WALLNUT:
       m_object_list.push_back(std::make_shared<Wallnut>(shared_from_this(), x, y));
+      break;
+    case PlantType::PLANT_PEASHOOTER:
+      m_object_list.push_back(std::make_shared<PeaShooter>(shared_from_this(), x, y));
+      break;
+    case PlantType::PLANT_REPEATER:
+      m_object_list.push_back(std::make_shared<Repeater>(shared_from_this(), x, y));
+      break;
     default:
       break;
   }
@@ -220,7 +232,7 @@ void GameWorld::UpdateZombieState(){
     auto zombie_ptr = std::dynamic_pointer_cast<Zombie>(*zombie_it);
     for(auto &obj:m_object_list)
     {
-      if(obj -> is_projectile() && areColliding(obj, *zombie_it))
+      if(obj -> is_projectile() && !obj -> isDead() && areColliding(obj, *zombie_it))
       {
         (*zombie_it) -> addHealth(obj -> getHarm());
         obj -> addHealth(-1); // not a magic number, just let the health reduce by 1;
@@ -244,11 +256,23 @@ void GameWorld::UpdateZombieState(){
 }
 
 void GameWorld::spawnZombieAt(int row_y, int x, ZombieType type){
+  std::cerr << row_y << m_row_zombie_cnt[row_y] <<std::endl;
   m_row_zombie_cnt[row_y]++;
   switch (type) {
     case ZombieType::ZOMBIE_REGULAR:
       m_object_list.push_back(std::make_shared<ZombieRegular>(shared_from_this(), row_y, x));
       m_zombie_it_list.push_back(std::prev(m_object_list.end()));
+      break;
+      
+    default:
+      break;
+  }
+}
+
+void GameWorld::spawnProjectileAt(int x, int y, ProjectileType type){
+  switch (type) {
+    case ProjectileType::PROJ_PEA:
+      m_object_list.push_back(std::make_shared<Pea>(shared_from_this(), x, y));
       break;
       
     default:

@@ -21,6 +21,7 @@ target_link_libraries(
   Zombie
   ZombieRegular
   Pea
+  Shooter
 )
 
 target_include_directories(
@@ -40,4 +41,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Zombie/
   ${CMAKE_SOURCE_DIR}/src/ZombieRegular/
   ${CMAKE_SOURCE_DIR}/src/Pea/
+  ${CMAKE_SOURCE_DIR}/src/Shooter/
 )

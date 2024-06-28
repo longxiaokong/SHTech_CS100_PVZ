@@ -252,4 +252,7 @@ const int ProjectileHeight[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CN
   3 * LAWN_GRID_HEIGHT,
 };
 
+const int SHOOTER_INTERVAL = 30;
+const int BULLET_INTERVAL = 5;
+
 #endif // !UTILS_HPP__
