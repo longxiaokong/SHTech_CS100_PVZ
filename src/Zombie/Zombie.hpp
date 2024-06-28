@@ -17,7 +17,7 @@ using pGameWorld = std::shared_ptr<GameWorld>;
 class Zombie : public MovingObject, public std::enable_shared_from_this<Zombie> {
 public:
   using std::enable_shared_from_this<Zombie>::shared_from_this;
-  Zombie(pGameWorld, ZombieType type, int, int initial_X=WINDOW_WIDTH - 1, int velocity_X=ZOMBIE_SPEED_REGULAR);
+  Zombie(pGameWorld, ZombieType type, int, int initial_X=WINDOW_WIDTH - 1, int velocity_X=ZOMBIE_VELOCITY_REGULAR);
   virtual void UpdateArbitrary() override;
   virtual void OnClick() override{};
   

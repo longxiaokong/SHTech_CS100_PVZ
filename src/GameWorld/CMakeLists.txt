@@ -20,6 +20,7 @@ target_link_libraries(
   Shovel
   Zombie
   ZombieRegular
+  Pea
 )
 
 target_include_directories(
@@ -38,4 +39,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Shovel/
   ${CMAKE_SOURCE_DIR}/src/Zombie/
   ${CMAKE_SOURCE_DIR}/src/ZombieRegular/
+  ${CMAKE_SOURCE_DIR}/src/Pea/
 )

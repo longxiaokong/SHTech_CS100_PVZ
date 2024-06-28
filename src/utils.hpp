@@ -200,10 +200,56 @@ const int ZombieImgID[static_cast<std::size_t>(ZombieType::ZOMBIE_TYPE_CNT)] = {
   IMGID_POLE_VAULTING_ZOMBIE
 };
 
-const int ZOMBIE_SPEED_REGULAR = -1;
-const int ZOMBIE_SPEED_RUNNING = -2;
+const int ZOMBIE_VELOCITY_REGULAR = -1;
+const int ZOMBIE_VELOCITY_RUNNING = -2;
 const int ZOMBIE_WIDTH = 20;
 const int ZOMBIE_HEIGHT = 80;
 const int ZOMBIE_HARM_REGULAR = 3;
+
+enum class ProjectileType{
+  PROJ_PEA,
+  PROJ_POW,
+  PROJ_TYPE_CNT
+};
+
+const int ProjectileImgID[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  IMGID_PEA,
+  IMGID_EXPLOSION
+};
+
+const int ProjectileHarm[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  20,
+  1800,
+};
+
+const int ProjectileVelocityX[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  8,
+  0,
+};
+
+const int ProjectileVelocityY[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  0,
+  0,
+};
+
+const int ProjectileAccecerationX[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  0,
+  0,
+};
+
+const int ProjectileAccecerationY[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  0,
+  0,
+};
+
+const int ProjectileWidth[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  28,
+  3 * LAWN_GRID_WIDTH,
+};
+
+const int ProjectileHeight[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
+  28,
+  3 * LAWN_GRID_HEIGHT,
+};
 
 #endif // !UTILS_HPP__

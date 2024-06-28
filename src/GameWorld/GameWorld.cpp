@@ -13,6 +13,7 @@
 #include "Shovel.hpp"
 #include "Zombie.hpp"
 #include "ZombieRegular.hpp"
+#include "Pea.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -21,6 +22,8 @@ GameWorld::~GameWorld() {}
 
 void GameWorld::Init() {
   spawnZombieAt(1);
+  for(int i = 1; i <= 20; i ++)
+  m_object_list.push_back(std::make_shared<Pea>(shared_from_this(), FIRST_COL_CENTER, FIRST_ROW_CENTER));
   // Step 1: create background.
   m_background = std::make_shared<Background>(shared_from_this());
   m_object_list.push_back(m_background);
@@ -204,8 +207,6 @@ void GameWorld::PlantAtPos(int x, int y, PlantType type){
 }
 
 bool GameWorld::areColliding(std::shared_ptr<GameObject> obj1, std::shared_ptr<GameObject> obj2){
-  std::cerr << obj1 -> GetX() << " " << obj1 -> GetY() << " " << ((2 * std::abs(obj1 -> GetX() - obj2 -> GetX()) < obj1 -> GetWidth() + obj2 -> GetWidth()) &&
-  (2 * std::abs(obj1 -> GetY() - obj2 -> GetY()) < obj1 -> GetHeight() + obj2 -> GetHeight())) << std::endl;
   return (2 * std::abs(obj1 -> GetX() - obj2 -> GetX()) < obj1 -> GetWidth() + obj2 -> GetWidth()) &&
   (2 * std::abs(obj1 -> GetY() - obj2 -> GetY()) < obj1 -> GetHeight() + obj2 -> GetHeight());
 }
@@ -217,7 +218,6 @@ void GameWorld::UpdateZombieState(){
   for(auto& zombie_it:m_zombie_it_list){
     bool flag = false;
     auto zombie_ptr = std::dynamic_pointer_cast<Zombie>(*zombie_it);
-    std::cerr << zombie_ptr -> GetX() << " " << zombie_ptr -> GetY() << std::endl;
     for(auto &obj:m_object_list)
     {
       if(obj -> is_projectile() && areColliding(obj, *zombie_it))
@@ -227,7 +227,6 @@ void GameWorld::UpdateZombieState(){
       }
       else if(obj -> is_plant() && areColliding(obj, *zombie_it))
       {
-        std::cerr << "GOOD!" << std::endl;
         flag = true;
         obj -> addHealth((*zombie_it) -> getHarm());
       }
