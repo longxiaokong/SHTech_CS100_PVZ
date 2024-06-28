@@ -45,6 +45,8 @@ public:
   void spawnNaturalSun(int worth=SUN_VALUE_DEFAULT);
                          
   void spawnProducedSunAt(int x, int y, int worth=SUN_VALUE_DEFAULT);
+  
+  void PlantAtPos(int x, int y, PlantType type);
 
 private:
   std::list<std::shared_ptr<GameObject> > m_object_list;

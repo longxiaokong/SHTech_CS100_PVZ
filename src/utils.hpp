@@ -142,11 +142,11 @@ const ImageID plantImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
 
 const int plantHealth[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
   -1,
-  200,
-  200,
+  300,
+  300,
   4000,
-  200,
-  200
+  300,
+  300
 };
 
 const int seedCoolDown[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
@@ -174,5 +174,6 @@ const int PRODUCED_SUN_VELOCITY_Y = 4;
 const int PRODUCED_SUN_ACCELERATION_Y = -1;
 const int NATUAL_SUN_DROP_INITIAL = 180;
 const int NATUAL_SUN_DROP_INTERVAL = 300;
+const int PRODUCE_SUN_INTERVAL = 600;
 
 #endif // !UTILS_HPP__

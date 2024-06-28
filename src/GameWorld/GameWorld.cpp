@@ -8,6 +8,7 @@
 #include "NaturalSun.hpp"
 #include "ProducedSun.hpp"
 #include "TextBase.hpp"
+#include "Sunflower.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -97,7 +98,9 @@ bool GameWorld::PlantAt(Plant *plant){
   m_currentCoolDownMask = nullptr;
   m_sunCnt -= seedCost[static_cast<size_t>(m_holdingPlant)];
   m_sunText -> SetText(std::to_string(m_sunCnt));
-  plant -> switchTo(m_holdingPlant);
+  int x = plant -> GetGridX(), y = plant -> GetGridY();
+  m_object_list.remove_if([plant](std::shared_ptr<GameObject> &x){return x.get() == plant;});
+  PlantAtPos(x, y, m_holdingPlant);
   m_holdingPlant = PlantType::PLANT_NONE;
   return true;
 }
@@ -123,4 +126,17 @@ void GameWorld::setSunCnt(unsigned int new_cnt){
 void GameWorld::addSunCnt(int delta){
   m_sunCnt += delta;
   m_sunText -> SetText(std::to_string(m_sunCnt));
+}
+
+void GameWorld::PlantAtPos(int x, int y, PlantType type){
+  switch (type) {
+    case PlantType::PLANT_NONE:
+      m_object_list.push_back(std::make_shared<Plant>(shared_from_this(), PlantType::PLANT_NONE, x, y));
+    case PlantType::PLANT_SUNFLOWER:
+      m_object_list.push_back(std::make_shared<Sunflower>(shared_from_this(), x, y));
+      break;
+      
+    default:
+      break;
+  }
 }

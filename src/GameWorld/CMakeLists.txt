@@ -15,6 +15,7 @@ target_link_libraries(
   Seed
   CoolDownMask
   Sun
+  Sunflower
 )
 
 target_include_directories(
@@ -28,4 +29,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/CoolDownMask/
   ${CMAKE_SOURCE_DIR}/src/Seed/
   ${CMAKE_SOURCE_DIR}/src/Sun/
+  ${CMAKE_SOURCE_DIR}/src/Sunflower/
 )
