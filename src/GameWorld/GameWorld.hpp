@@ -32,6 +32,10 @@ public:
   
   bool TryHoldSeed(const Seed*);
   
+  void ClickAtPlant(Plant *);
+  
+  void ShovelPlant(Plant *);
+  
   bool PlantAt(Plant*);
   
   bool HasCoolDown(std::shared_ptr<GameObject>) const;
@@ -47,6 +51,15 @@ public:
   void spawnProducedSunAt(int x, int y, int worth=SUN_VALUE_DEFAULT);
   
   void PlantAtPos(int x, int y, PlantType type);
+  
+  bool GetHoldingShovel() {return m_holding_shovel;}
+  
+  void SetHoldingShovel() {
+    m_holdingPlant = PlantType::PLANT_NONE;
+    m_holdingFromSlot = -1;
+    m_currentCoolDownMask = nullptr;
+    m_holding_shovel = true;
+  }
 
 private:
   std::list<std::shared_ptr<GameObject> > m_object_list;
@@ -57,6 +70,7 @@ private:
   std::shared_ptr<TextBase> m_sunText = nullptr;
   std::shared_ptr<CoolDownMask> m_currentCoolDownMask;
   std::shared_ptr<Timer> m_natural_sun_timer;
+  bool m_holding_shovel;
 };
 
 #endif // !GAMEWORLD_HPP__

@@ -13,7 +13,7 @@ Plant::Plant(pGameWorld pWorld,PlantType type, int x, int y)
 : GameObject(pWorld, plantImageID[static_cast<std::size_t>(type)], Plant::gridToPixelX(x), Plant::gridToPixelY(y), LAYER_UI, LAWN_GRID_WIDTH, LAWN_GRID_HEIGHT, ANIMID_IDLE_ANIM), m_type(type), m_health(plantHealth[static_cast<std::size_t>(type)]){}
 
 void Plant::OnClick(){
-  getGameWorld() -> PlantAt(this);
+  getGameWorld() -> ClickAtPlant(this);
 }
 
 Plant::~Plant(){

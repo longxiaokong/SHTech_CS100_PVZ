@@ -47,6 +47,7 @@ add_subdirectory(src/Sun/)
 add_subdirectory(src/Projectile/)
 add_subdirectory(src/Sunflower/)
 add_subdirectory(src/Wallnut/)
+add_subdirectory(src/Shovel/)
 #↑↑↑↑↑↑↑↑↑↑↑ ADD YOUR SUBDIRECTORIES HERE ↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 add_executable(

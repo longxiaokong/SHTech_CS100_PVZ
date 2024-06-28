@@ -50,6 +50,11 @@ const int SEED_SLOT_ROW_CENTER = 555;
 const int SEED_SLOT_FIRST_COL_CENTER = 125 + SEED_SLOT_SPACING;
 const int MAX_SEED_SLOT_CNT = 5;
 
+const int SHOVEL_X = 600;
+const int SHOVEL_Y = WINDOW_HEIGHT - 40;
+const int SHOVEL_WIDTH = 50;
+const int SHOVEL_HEIGHT = 50;
+
 const int SUN_CNT_ROW_CENTER = 520;
 const int SUN_CNT_COL_CENTER = 60;
 

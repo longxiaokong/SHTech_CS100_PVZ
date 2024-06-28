@@ -17,6 +17,7 @@ target_link_libraries(
   Sun
   Sunflower
   Wallnut
+  Shovel
 )
 
 target_include_directories(
@@ -32,4 +33,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Sun/
   ${CMAKE_SOURCE_DIR}/src/Sunflower/
   ${CMAKE_SOURCE_DIR}/src/Wallnut/
+  ${CMAKE_SOURCE_DIR}/src/Shovel/
 )

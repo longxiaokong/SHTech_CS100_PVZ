@@ -17,5 +17,5 @@ void Wallnut::Update(){
     m_cracked = true;
     ChangeImage(IMGID_WALLNUT_CRACKED);
   }
-  addHealth(-20);
+//  addHealth(-20);
 }

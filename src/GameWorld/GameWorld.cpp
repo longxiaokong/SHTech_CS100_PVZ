@@ -10,6 +10,7 @@
 #include "TextBase.hpp"
 #include "Sunflower.hpp"
 #include "Wallnut.hpp"
+#include "Shovel.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -18,23 +19,30 @@ GameWorld::~GameWorld() {}
 
 void GameWorld::Init() {
   
+  // Step 1: create background.
   m_background = std::make_shared<Background>(shared_from_this());
   m_object_list.push_back(m_background);
   
+  // Step 2: create shovel.
+  m_object_list.push_back(std::make_shared<Shovel>(shared_from_this()));
+  
+  // Step 3: create empty grids.
   for(int i = 1; i <= GAME_COLS; i ++)
     for(int j = 1; j <= GAME_ROWS; j ++)
       m_object_list.push_back(std::make_shared<Plant>(shared_from_this(), PlantType::PLANT_NONE, i, j));
   
-  m_object_list.push_back( m_background);
-  
+  // Step 4: create seed slots.
   for(int i = 1; i <= MAX_SEED_SLOT_CNT; i ++)
     m_object_list.push_back( std::make_shared<Seed>(shared_from_this(), i, slotPlant[i]));
   
+  // Step 5: init the CoolDownMask of the plant held by hand
   m_currentCoolDownMask = nullptr;
   
+  // Step 6: init sun counter
   m_sunCnt = 100;
   m_sunText = std::make_shared<TextBase>(SUN_CNT_COL_CENTER, SUN_CNT_ROW_CENTER, std::to_string(m_sunCnt));
   
+  // Step 7: init sun generator
   m_natural_sun_timer = std::make_shared<Timer>(NATUAL_SUN_DROP_INITIAL);
   m_natural_sun_timer -> StartTimer();
 }
@@ -82,10 +90,18 @@ void GameWorld::CleanUp() {
 bool GameWorld::TryHoldSeed(const Seed* pSeed){
   if(m_sunCnt < pSeed -> getCost())
     return false;
+  m_holding_shovel = false;
   m_holdingPlant = pSeed -> getPlantType();
   m_holdingFromSlot = pSeed -> getSlotNum();
   m_currentCoolDownMask = std::make_shared<CoolDownMask>(shared_from_this(), m_holdingFromSlot, slotPlant[static_cast<std::size_t>(m_holdingPlant)]);
   return true;
+}
+
+void GameWorld::ShovelPlant(Plant *plant)
+{
+  if (plant -> getPlantType() != PlantType::PLANT_NONE)
+    m_object_list.remove_if([plant](std::shared_ptr<GameObject> &x){return x.get() == plant;});
+  m_holding_shovel = false;
 }
 
 bool GameWorld::PlantAt(Plant *plant){
@@ -107,6 +123,12 @@ bool GameWorld::PlantAt(Plant *plant){
   PlantAtPos(x, y, m_holdingPlant);
   m_holdingPlant = PlantType::PLANT_NONE;
   return true;
+}
+
+void GameWorld::ClickAtPlant(Plant *plant){
+  if(m_holding_shovel)
+    ShovelPlant(plant);
+  else PlantAt(plant);
 }
 
 bool GameWorld::HasCoolDown(std::shared_ptr<GameObject> pGameObject) const {
