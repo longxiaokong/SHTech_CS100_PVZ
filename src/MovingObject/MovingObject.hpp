@@ -1,24 +1,24 @@
 //
-//  Projectile.hpp
+//  MovingObject.hpp
 //  PvZ
 //
 //  Created by lxk on 2024/6/28.
 //
 
-#ifndef Projectile_hpp
-#define Projectile_hpp
+#ifndef MovingObject_hpp
+#define MovingObject_hpp
 #include "GameObject.hpp"
 
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class Projectile : public GameObject, public std::enable_shared_from_this<Projectile> {
+class MovingObject : public GameObject, public std::enable_shared_from_this<MovingObject> {
 public:
-  using std::enable_shared_from_this<Projectile>::shared_from_this;
-  Projectile(pGameWorld, ImageID, int, int, LayerID, int, int, AnimID, int, int, int, int);
+  using std::enable_shared_from_this<MovingObject>::shared_from_this;
+  MovingObject(pGameWorld, ImageID, int, int, LayerID, int, int, AnimID, int, int, int, int);
   virtual void Update() override;
   virtual void UpdateArbitrary() = 0;
-  virtual ~Projectile() = default;
+  virtual ~MovingObject() = default;
   int GetVelocityX() {return m_velocity_x;}
   int GetVelocityY() {return m_velocity_y;}
   int GetAccelerationX() {return m_acceleration_x;}
@@ -32,4 +32,4 @@ private:
   int m_acceleration_x, m_acceleration_y;
 };
 
-#endif /* Projectile_hpp */
+#endif /* MovingObject_hpp */

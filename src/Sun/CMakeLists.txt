@@ -13,7 +13,7 @@ add_library(
 
 target_link_libraries(
   Sun
-  Projectile
+  MovingObject
   Framework
   GameWorld
 )
@@ -24,7 +24,7 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/
   ${CMAKE_SOURCE_DIR}/src/Framework/
   ${CMAKE_SOURCE_DIR}/src/GameWorld/
-  ${CMAKE_SOURCE_DIR}/src/Projectile/
+  ${CMAKE_SOURCE_DIR}/src/MovingObject/
   ${CMAKE_SOURCE_DIR}/src/Sun/
 )
 
