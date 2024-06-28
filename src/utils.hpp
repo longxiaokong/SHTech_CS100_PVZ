@@ -43,10 +43,15 @@ const int FIRST_COL_CENTER = 75;
 const int GAME_ROWS = 5;
 const int GAME_COLS = 9;
 
+const int SEED_SLOT_SPACING = 3;
 const int SEED_SLOT_WIDTH = 50;
 const int SEED_SLOT_HEIGHT = 70;
 const int SEED_SLOT_ROW_CENTER = 555;
-const int SEED_SLOT_FIRST_COL_CENTER = 125;
+const int SEED_SLOT_FIRST_COL_CENTER = 125 + SEED_SLOT_SPACING;
+const int MAX_SEED_SLOT_CNT = 5;
+
+const int SUN_CNT_ROW_CENTER = 520;
+const int SUN_CNT_COL_CENTER = 60;
 
 using ImageID = int;
 
@@ -103,6 +108,42 @@ enum class PlantType{
   PLANT_CHERRY_BOMB,
   PLANT_REPEATER,
   PLANT_TYPE_CNT,
+};
+
+const ImageID seedImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  IMGID_PEA,
+  IMGID_SEED_SUNFLOWER,
+  IMGID_SEED_PEASHOOTER,
+  IMGID_SEED_WALLNUT,
+  IMGID_SEED_CHERRY_BOMB,
+  IMGID_SEED_REPEATER
+};
+
+const unsigned seedCost[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  0,
+  50,
+  100,
+  50,
+  150,
+  200
+};
+
+const ImageID plantImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  IMGID_SUN,
+  IMGID_SUNFLOWER,
+  IMGID_PEASHOOTER,
+  IMGID_WALLNUT,
+  IMGID_CHERRY_BOMB,
+  IMGID_REPEATER
+};
+
+const int plantHealth[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
+  -1,
+  200,
+  200,
+  4000,
+  200,
+  200
 };
 
 #endif // !UTILS_HPP__

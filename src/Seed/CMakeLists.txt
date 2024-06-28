@@ -9,7 +9,7 @@ add_library(
 
 target_link_libraries(
   Seed
-  GameObject
+  Slot
   Framework
 )
 
@@ -19,6 +19,6 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/
   ${CMAKE_SOURCE_DIR}/src/Framework/
   ${CMAKE_SOURCE_DIR}/src/GameWorld/
-  ${CMAKE_SOURCE_DIR}/src/GameObject/
+  ${CMAKE_SOURCE_DIR}/src/Slot/
   ${CMAKE_SOURCE_DIR}/src/Seed/
 )

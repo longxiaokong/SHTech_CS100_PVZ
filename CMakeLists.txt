@@ -40,6 +40,8 @@ add_subdirectory(src/GameObject/)
 add_subdirectory(src/GameWorld/)
 add_subdirectory(src/Background/)
 add_subdirectory(src/Plant/)
+add_subdirectory(src/CoolDownMask/)
+add_subdirectory(src/Slot/)
 add_subdirectory(src/Seed/)
 #↑↑↑↑↑↑↑↑↑↑↑ ADD YOUR SUBDIRECTORIES HERE ↑↑↑↑↑↑↑↑↑↑↑↑↑
 

@@ -12,19 +12,10 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-const ImageID plantImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  IMGID_SUN,
-  IMGID_SUNFLOWER,
-  IMGID_PEASHOOTER,
-  IMGID_WALLNUT,
-  IMGID_CHERRY_BOMB,
-  IMGID_REPEATER
-};
-
 class Plant : public GameObject, public std::enable_shared_from_this<Plant> {
 public:
   using std::enable_shared_from_this<Plant>::shared_from_this;
-  Plant(PlantType type, int x, int y);
+  Plant(pGameWorld pWorld, PlantType type, int x, int y);
   virtual ~Plant() = default;
   virtual void Update() override{
     if(m_type != PlantType::PLANT_NONE && m_health <= 0)
@@ -34,7 +25,8 @@ public:
       ChangeImage(plantImageID[static_cast<std::size_t>(PlantType::PLANT_NONE)]);
     }
   }
-  virtual void OnClick() override{ChangeImage(plantImageID[static_cast<std::size_t>(PlantType::PLANT_SUNFLOWER)]);};
+  virtual void OnClick() override;
+  void switchTo(PlantType);
   static int gridToPixelX(int x) {return FIRST_COL_CENTER + (x - 1) * LAWN_GRID_WIDTH;}
   static int gridToPixelY(int y) {return FIRST_ROW_CENTER + (y - 1) * LAWN_GRID_HEIGHT;}
 private:

@@ -14,25 +14,25 @@ public:
   ObjectBase& operator=(const ObjectBase& other) = delete;
   ObjectBase& operator=(ObjectBase&& other) = delete;
   virtual ~ObjectBase();
-
+  
   virtual bool operator==(const ObjectBase& other);
-
+  
   virtual void Update() = 0;
   virtual void OnClick() = 0;
-
+  
   int GetX() const;
   int GetY() const;
   int GetWidth() const;
   int GetHeight() const;
-
+  
   void MoveTo(int x, int y);
   
   AnimID GetCurrentAnimation() const;
   void ChangeImage(ImageID imageID);
   void PlayAnimation(AnimID animID);
-
+  
   friend class GameManager;
-
+  
 private:
   ImageID m_imageID;
   int m_x;
@@ -42,7 +42,7 @@ private:
   int m_height;
   AnimID m_animID;
   std::size_t m_currentFrame;
-
+  
 private:
   template<typename Func>
   static void DisplayAllObjects(Func displayAndAnimateFunc) {
@@ -52,7 +52,7 @@ private:
       }
     }
   }
-
+  
   static void ClickAt(int x, int y) {
     for (int layer = 0; layer < MAX_LAYERS; layer++) {
       for (auto& obj : GetObjects(layer)) {
@@ -63,9 +63,9 @@ private:
       }
     }
   }
-
+  
   static std::set<ObjectBase*>& GetObjects(int layer);
-
+  
 };
 
 

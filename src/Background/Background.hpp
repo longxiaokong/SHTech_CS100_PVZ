@@ -14,7 +14,7 @@ using pGameWorld = std::shared_ptr<GameWorld>;
 class Background : public GameObject, public std::enable_shared_from_this<Background> {
 public:
   using std::enable_shared_from_this<Background>::shared_from_this;
-  Background();
+  Background(pGameWorld pWorld);
   virtual ~Background() = default;
   virtual void Update() override{}
   virtual void OnClick() override{}

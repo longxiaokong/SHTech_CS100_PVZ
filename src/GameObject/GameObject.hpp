@@ -11,10 +11,11 @@ using pGameWorld = std::shared_ptr<GameWorld>;
 class GameObject : public ObjectBase, public std::enable_shared_from_this<GameObject> {
 public:
   using std::enable_shared_from_this<GameObject>::shared_from_this;
-  GameObject(ImageID imageID, int x, int y, LayerID layer, int width, int height, AnimID animID);
+  GameObject(pGameWorld pWorld,ImageID imageID, int x, int y, LayerID layer, int width, int height, AnimID animID);
   virtual ~GameObject() = default;
+  pGameWorld getGameWorld(){return m_pWorld;}
 private:
-
+  pGameWorld m_pWorld;
 };
 
 
