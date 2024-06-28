@@ -17,6 +17,7 @@ class GameObject;
 class NaturalSun;
 class ProducedSun;
 class Timer;
+class CherryBomb;
 
 class GameWorld : public WorldBase, public std::enable_shared_from_this<GameWorld> {
 public:

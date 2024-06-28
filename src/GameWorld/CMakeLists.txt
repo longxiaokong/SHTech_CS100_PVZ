@@ -22,6 +22,7 @@ target_link_libraries(
   ZombieRegular
   Pea
   Shooter
+  CherryBomb
 )
 
 target_include_directories(
@@ -42,4 +43,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/ZombieRegular/
   ${CMAKE_SOURCE_DIR}/src/Pea/
   ${CMAKE_SOURCE_DIR}/src/Shooter/
+  ${CMAKE_SOURCE_DIR}/src/CherryBomb/
 )

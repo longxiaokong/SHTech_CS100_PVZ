@@ -255,4 +255,6 @@ const int ProjectileHeight[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CN
 const int SHOOTER_INTERVAL = 30;
 const int BULLET_INTERVAL = 5;
 
+const int CHERRY_BOMB_LIFETIME = 15;
+
 #endif // !UTILS_HPP__

@@ -16,6 +16,7 @@
 #include "Pea.hpp"
 #include "PeaShooter.hpp"
 #include "Repeater.hpp"
+#include "CherryBomb.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -212,6 +213,9 @@ void GameWorld::PlantAtPos(int x, int y, PlantType type){
       break;
     case PlantType::PLANT_REPEATER:
       m_object_list.push_back(std::make_shared<Repeater>(shared_from_this(), x, y));
+      break;
+    case PlantType::PLANT_CHERRY_BOMB:
+      m_object_list.push_back(std::make_shared<CherryBomb>(shared_from_this(), x, y));
       break;
     default:
       break;
