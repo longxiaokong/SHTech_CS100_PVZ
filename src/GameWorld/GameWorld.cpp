@@ -17,6 +17,7 @@
 #include "PeaShooter.hpp"
 #include "Repeater.hpp"
 #include "CherryBomb.hpp"
+#include "Pow.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -260,7 +261,6 @@ void GameWorld::UpdateZombieState(){
 }
 
 void GameWorld::spawnZombieAt(int row_y, int x, ZombieType type){
-  std::cerr << row_y << m_row_zombie_cnt[row_y] <<std::endl;
   m_row_zombie_cnt[row_y]++;
   switch (type) {
     case ZombieType::ZOMBIE_REGULAR:
@@ -278,7 +278,9 @@ void GameWorld::spawnProjectileAt(int x, int y, ProjectileType type){
     case ProjectileType::PROJ_PEA:
       m_object_list.push_back(std::make_shared<Pea>(shared_from_this(), x, y));
       break;
-      
+    case ProjectileType::PROJ_POW:
+      m_object_list.push_back(std::make_shared<Pow>(shared_from_this(), x, y));
+      break;
     default:
       break;
   }

@@ -23,6 +23,7 @@ target_link_libraries(
   Pea
   Shooter
   CherryBomb
+  Pow
 )
 
 target_include_directories(
@@ -44,4 +45,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Pea/
   ${CMAKE_SOURCE_DIR}/src/Shooter/
   ${CMAKE_SOURCE_DIR}/src/CherryBomb/
+  ${CMAKE_SOURCE_DIR}/src/Pow/
 )
