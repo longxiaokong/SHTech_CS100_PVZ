@@ -3,6 +3,11 @@
 #include "Plant.hpp"
 #include "Seed.hpp"
 #include "CoolDownMask.hpp"
+#include "Timer.hpp"
+#include "utils.hpp"
+#include "NaturalSun.hpp"
+#include "ProducedSun.hpp"
+#include "TextBase.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -12,34 +17,44 @@ GameWorld::~GameWorld() {}
 void GameWorld::Init() {
   
   m_background = std::make_shared<Background>(shared_from_this());
-  objectList.insert(objectList.end(), m_background);
+  m_object_list.push_back(m_background);
   
   for(int i = 1; i <= GAME_COLS; i ++)
     for(int j = 1; j <= GAME_ROWS; j ++)
-      objectList.insert(objectList.end(), std::make_shared<Plant>(shared_from_this(), PlantType::PLANT_NONE, i, j));
+      m_object_list.push_back(std::make_shared<Plant>(shared_from_this(), PlantType::PLANT_NONE, i, j));
   
-  objectList.insert(objectList.end(), m_background);
+  m_object_list.push_back( m_background);
   
   for(int i = 1; i <= MAX_SEED_SLOT_CNT; i ++)
-    objectList.insert(objectList.end(), std::make_shared<Seed>(shared_from_this(), i, slotPlant[i]));
+    m_object_list.push_back( std::make_shared<Seed>(shared_from_this(), i, slotPlant[i]));
   
   m_currentCoolDownMask = nullptr;
   
   m_sunCnt = 100;
   m_sunText = std::make_shared<TextBase>(SUN_CNT_COL_CENTER, SUN_CNT_ROW_CENTER, std::to_string(m_sunCnt));
+  
+  m_natural_sun_timer = std::make_shared<Timer>(NATUAL_SUN_DROP_INITIAL);
+  m_natural_sun_timer -> StartTimer();
 }
 
 LevelStatus GameWorld::Update() {
-  // YOUR CODE HERE
-  for(const auto& gameObject: objectList)
+  // Step 1: drop natual sun.
+  m_natural_sun_timer -> Update();
+  if(m_natural_sun_timer -> isTimingEnded())
+  {
+    spawnNaturalSun();
+    m_natural_sun_timer -> SetTimer(NATUAL_SUN_DROP_INTERVAL);
+  }
+  
+  for(const auto& gameObject: m_object_list)
     gameObject -> Update();
   
-  for(auto it = objectList.begin(); it != objectList.end();)
+  for(auto it = m_object_list.begin(); it != m_object_list.end();)
   {
     if((*it) -> isDead())
     {
-      std::cerr << "erased when ref count is " << (*it).use_count() << std::endl;
-      it = objectList.erase(it);
+//      std::cerr << "erased when ref count is " << (*it).use_count() << std::endl;
+      it = m_object_list.erase(it);
     }
     else ++it;
   }
@@ -47,9 +62,16 @@ LevelStatus GameWorld::Update() {
 }
 
 void GameWorld::CleanUp() {
-  objectList.clear();
-  m_background = nullptr;
+  //  Step 1: remove the sun producing timer.
+  m_natural_sun_timer = nullptr;
+  //  Step 2: remove all items from object list.
+  m_object_list.clear();
+  //  Step 3: reset current holding plant.
   m_currentCoolDownMask = nullptr;
+  m_holdingPlant = PlantType::PLANT_NONE;
+  m_holdingFromSlot = -1;
+  //  Step 4: remove the background.
+  m_background = nullptr;
 }
 
 bool GameWorld::TryHoldSeed(const Seed* pSeed){
@@ -66,7 +88,7 @@ bool GameWorld::PlantAt(Plant *plant){
     return true;
   if(m_sunCnt < seedCost[static_cast<size_t>(m_holdingPlant)])
     return false;
-  objectList.insert(objectList.end(), m_currentCoolDownMask);
+  m_object_list.push_back(m_currentCoolDownMask);
   m_currentCoolDownMask = nullptr;
   m_sunCnt -= seedCost[static_cast<size_t>(m_holdingPlant)];
   m_sunText -> SetText(std::to_string(m_sunCnt));
@@ -77,4 +99,23 @@ bool GameWorld::PlantAt(Plant *plant){
 
 bool GameWorld::HasCoolDown(std::shared_ptr<GameObject> pGameObject) const {
   return typeid(pGameObject) == typeid(std::shared_ptr<CoolDownMask>);
+}
+
+void GameWorld::spawnNaturalSun(int worth){
+  m_object_list.push_back(std::make_shared<NaturalSun>(shared_from_this(), randInt(FIRST_COL_CENTER, FIRST_COL_CENTER + (GAME_COLS - 1) * LAWN_GRID_WIDTH), randInt(FIRST_ROW_CENTER, FIRST_ROW_CENTER + (GAME_ROWS - 1) * LAWN_GRID_HEIGHT), worth));
+}
+
+
+void GameWorld::spawnProducedSunAt(int x, int y, int worth){
+  m_object_list.push_back(std::make_shared<ProducedSun>(shared_from_this(), x, y, worth));
+}
+
+void GameWorld::setSunCnt(unsigned int new_cnt){
+  m_sunCnt = new_cnt;
+  m_sunText -> SetText(std::to_string(m_sunCnt));
+}
+
+void GameWorld::addSunCnt(int delta){
+  m_sunCnt += delta;
+  m_sunText -> SetText(std::to_string(m_sunCnt));
 }

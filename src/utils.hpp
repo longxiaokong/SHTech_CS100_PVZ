@@ -100,6 +100,9 @@ const LayerID LAYER_BACKGROUND = 6;
 
 const int MS_PER_FRAME = 33;
 
+const int SUN_WIDTH = 80;
+const int SUN_HEIGHT = 80;
+
 enum class PlantType{
   PLANT_NONE,
   PLANT_SUNFLOWER,
@@ -163,5 +166,13 @@ const PlantType slotPlant[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
   PlantType::PLANT_CHERRY_BOMB,
   PlantType::PLANT_REPEATER
 };
+
+const int SUN_VALUE_DEFAULT = 25;
+const int NATURAL_SUN_VELOCITY_Y = -2;
+const int PRODUCED_SUN_VELOCITY_X = 1;
+const int PRODUCED_SUN_VELOCITY_Y = 4;
+const int PRODUCED_SUN_ACCELERATION_Y = -1;
+const int NATUAL_SUN_DROP_INITIAL = 180;
+const int NATUAL_SUN_DROP_INTERVAL = 300;
 
 #endif // !UTILS_HPP__

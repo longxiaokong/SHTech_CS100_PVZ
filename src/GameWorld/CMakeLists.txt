@@ -14,6 +14,7 @@ target_link_libraries(
   Plant
   Seed
   CoolDownMask
+  Sun
 )
 
 target_include_directories(
@@ -26,4 +27,5 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Plant/
   ${CMAKE_SOURCE_DIR}/src/CoolDownMask/
   ${CMAKE_SOURCE_DIR}/src/Seed/
+  ${CMAKE_SOURCE_DIR}/src/Sun/
 )

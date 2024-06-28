@@ -43,6 +43,8 @@ add_subdirectory(src/Plant/)
 add_subdirectory(src/CoolDownMask/)
 add_subdirectory(src/Slot/)
 add_subdirectory(src/Seed/)
+add_subdirectory(src/Sun/)
+add_subdirectory(src/Projectile/)
 #↑↑↑↑↑↑↑↑↑↑↑ ADD YOUR SUBDIRECTORIES HERE ↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 add_executable(

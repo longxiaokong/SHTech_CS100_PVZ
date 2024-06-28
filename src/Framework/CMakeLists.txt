@@ -20,6 +20,7 @@ add_library(
   SpriteManager.hpp
   SpriteManager.cpp
   ${CMAKE_SOURCE_DIR}/src/utils.hpp
+  ${CMAKE_SOURCE_DIR}/src/Timer.hpp
 )
 
 IF (APPLE)
