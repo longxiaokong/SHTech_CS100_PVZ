@@ -6,12 +6,17 @@
 //
 
 #include "Seed.hpp"
-#include "utils.hpp"
 #include "GameWorld.hpp"
+#include "utils.hpp"
 
-Seed::Seed(pGameWorld pWorld,int slot, PlantType type)
-: Slot(pWorld, slot, type, LAYER_UI, seedImageID[static_cast<std::size_t>(type)]) {}
+Seed::Seed (pGameWorld pWorld, int slot, PlantType type)
+    : Slot (pWorld, slot, type, LAYER_UI,
+            seedImageID[static_cast<std::size_t> (type)])
+{
+}
 
-void Seed::OnClick() {
-  getGameWorld() -> TryHoldSeed(this);
+void
+Seed::OnClick ()
+{
+  getGameWorld ()->TryHoldSeed (this);
 }

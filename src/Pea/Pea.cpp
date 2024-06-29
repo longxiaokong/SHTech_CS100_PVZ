@@ -9,4 +9,7 @@
 #include "Projectile.hpp"
 #include "utils.hpp"
 
-Pea::Pea(pGameWorld pWorld, int initial_x, int initial_y): Projectile(pWorld, initial_x, initial_y, ProjectileType::PROJ_PEA){}
+Pea::Pea (pGameWorld pWorld, int initial_x, int initial_y)
+    : Projectile (pWorld, initial_x, initial_y, ProjectileType::PROJ_PEA)
+{
+}

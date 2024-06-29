@@ -12,21 +12,57 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class MovingObject : public GameObject, public std::enable_shared_from_this<MovingObject> {
+class MovingObject : public GameObject,
+                     public std::enable_shared_from_this<MovingObject>
+{
 public:
   using std::enable_shared_from_this<MovingObject>::shared_from_this;
-  MovingObject(pGameWorld, ImageID, int, int, LayerID, int, int, AnimID, int, int, int, int);
-  virtual void Update() override;
-  virtual void UpdateArbitrary() = 0;
-  virtual ~MovingObject() = default;
-  int GetVelocityX() {return m_velocity_x;}
-  int GetVelocityY() {return m_velocity_y;}
-  int GetAccelerationX() {return m_acceleration_x;}
-  int GetAccelerationY() {return m_acceleration_y;}
-  void SetVelocityX(int vx) {m_velocity_x = vx;}
-  void SetVelocityY(int vy) {m_velocity_y = vy;}
-  void SetAccelerationX(int ax) {m_acceleration_x = ax;}
-  void SetAccelerationY(int ay) {m_acceleration_y = ay;}
+  MovingObject (pGameWorld, ImageID, int, int, LayerID, int, int, AnimID, int,
+                int, int, int);
+  virtual void Update () override;
+  virtual void UpdateArbitrary () = 0;
+  virtual ~MovingObject () = default;
+  int
+  GetVelocityX ()
+  {
+    return m_velocity_x;
+  }
+  int
+  GetVelocityY ()
+  {
+    return m_velocity_y;
+  }
+  int
+  GetAccelerationX ()
+  {
+    return m_acceleration_x;
+  }
+  int
+  GetAccelerationY ()
+  {
+    return m_acceleration_y;
+  }
+  void
+  SetVelocityX (int vx)
+  {
+    m_velocity_x = vx;
+  }
+  void
+  SetVelocityY (int vy)
+  {
+    m_velocity_y = vy;
+  }
+  void
+  SetAccelerationX (int ax)
+  {
+    m_acceleration_x = ax;
+  }
+  void
+  SetAccelerationY (int ay)
+  {
+    m_acceleration_y = ay;
+  }
+
 private:
   int m_velocity_x, m_velocity_y;
   int m_acceleration_x, m_acceleration_y;

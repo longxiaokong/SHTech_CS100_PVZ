@@ -15,18 +15,25 @@ static const std::string ASSET_DIR = "../assets/";
 #endif // __APPLE__
 
 // Returns a random integer within [min, max] (inclusive).
-inline int randInt(int min, int max) {
+inline int
+randInt (int min, int max)
+{
   if (max < min)
-    std::swap(max, min);
+    std::swap (max, min);
   static std::random_device rd;
-  static std::mt19937 generator(rd());
-  std::uniform_int_distribution<> distro(min, max);
-  return distro(generator);
+  static std::mt19937 generator (rd ());
+  std::uniform_int_distribution<> distro (min, max);
+  return distro (generator);
 }
 
-enum class LevelStatus { ONGOING, LOSING };
+enum class LevelStatus
+{
+  ONGOING,
+  LOSING
+};
 
-enum class KeyCode {
+enum class KeyCode
+{
   NONE,
   ENTER, // Enter
   QUIT   // Esc
@@ -108,7 +115,8 @@ const int MS_PER_FRAME = 33;
 const int SUN_WIDTH = 80;
 const int SUN_HEIGHT = 80;
 
-enum class PlantType{
+enum class PlantType
+{
   PLANT_NONE,
   PLANT_SUNFLOWER,
   PLANT_PEASHOOTER,
@@ -118,59 +126,27 @@ enum class PlantType{
   PLANT_TYPE_CNT,
 };
 
-const ImageID seedImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  IMGID_PEA,
-  IMGID_SEED_SUNFLOWER,
-  IMGID_SEED_PEASHOOTER,
-  IMGID_SEED_WALLNUT,
-  IMGID_SEED_CHERRY_BOMB,
-  IMGID_SEED_REPEATER
-};
+const ImageID seedImageID[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { IMGID_PEA,          IMGID_SEED_SUNFLOWER,   IMGID_SEED_PEASHOOTER,
+        IMGID_SEED_WALLNUT, IMGID_SEED_CHERRY_BOMB, IMGID_SEED_REPEATER };
 
-const unsigned seedCost[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  0,
-  50,
-  100,
-  50,
-  150,
-  200
-};
+const unsigned seedCost[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { 0, 50, 100, 50, 150, 200 };
 
-const ImageID plantImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  IMGID_NONE,
-  IMGID_SUNFLOWER,
-  IMGID_PEASHOOTER,
-  IMGID_WALLNUT,
-  IMGID_CHERRY_BOMB,
-  IMGID_REPEATER
-};
+const ImageID plantImageID[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { IMGID_NONE,    IMGID_SUNFLOWER,   IMGID_PEASHOOTER,
+        IMGID_WALLNUT, IMGID_CHERRY_BOMB, IMGID_REPEATER };
 
-const int plantHealth[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  -1,
-  300,
-  300,
-  4000,
-  300,
-  300
-};
+const int plantHealth[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { -1, 300, 300, 4000, 300, 300 };
 
-const int seedCoolDown[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  0,
-  240,
-  240,
-  900,
-  1200,
-  240
-};
+const int seedCoolDown[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { 0, 240, 240, 900, 1200, 240 };
 
-const PlantType slotPlant[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  PlantType::PLANT_NONE,
-  PlantType::PLANT_SUNFLOWER,
-  PlantType::PLANT_PEASHOOTER,
-  PlantType::PLANT_WALLNUT,
-  PlantType::PLANT_CHERRY_BOMB,
-  PlantType::PLANT_REPEATER
-};
+const PlantType slotPlant[static_cast<int> (PlantType::PLANT_TYPE_CNT)]
+    = { PlantType::PLANT_NONE,        PlantType::PLANT_SUNFLOWER,
+        PlantType::PLANT_PEASHOOTER,  PlantType::PLANT_WALLNUT,
+        PlantType::PLANT_CHERRY_BOMB, PlantType::PLANT_REPEATER };
 
 const int SUN_VALUE_DEFAULT = 25;
 const int NATURAL_SUN_VELOCITY_Y = -2;
@@ -181,24 +157,20 @@ const int NATUAL_SUN_DROP_INITIAL = 180;
 const int NATUAL_SUN_DROP_INTERVAL = 300;
 const int PRODUCE_SUN_INTERVAL = 600;
 
-enum class ZombieType{
+enum class ZombieType
+{
   ZOMBIE_REGULAR,
   ZOMBIE_BUCKET,
   ZOMBIE_PULT,
   ZOMBIE_TYPE_CNT
 };
 
-const int ZombieHealth[static_cast<std::size_t>(ZombieType::ZOMBIE_TYPE_CNT)] = {
-  200,
-  1300,
-  340
-};
+const int ZombieHealth[static_cast<std::size_t> (ZombieType::ZOMBIE_TYPE_CNT)]
+    = { 200, 1300, 340 };
 
-const int ZombieImgID[static_cast<std::size_t>(ZombieType::ZOMBIE_TYPE_CNT)] = {
-  IMGID_REGULAR_ZOMBIE,
-  IMGID_BUCKET_HEAD_ZOMBIE,
-  IMGID_POLE_VAULTING_ZOMBIE
-};
+const int ZombieImgID[static_cast<std::size_t> (ZombieType::ZOMBIE_TYPE_CNT)]
+    = { IMGID_REGULAR_ZOMBIE, IMGID_BUCKET_HEAD_ZOMBIE,
+        IMGID_POLE_VAULTING_ZOMBIE };
 
 const int ZOMBIE_VELOCITY_REGULAR = -1;
 const int ZOMBIE_VELOCITY_RUNNING = -2;
@@ -206,51 +178,65 @@ const int ZOMBIE_WIDTH = 20;
 const int ZOMBIE_HEIGHT = 80;
 const int ZOMBIE_HARM_REGULAR = 3;
 
-enum class ProjectileType{
+enum class ProjectileType
+{
   PROJ_PEA,
   PROJ_POW,
   PROJ_TYPE_CNT
 };
 
-const int ProjectileImgID[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  IMGID_PEA,
-  IMGID_EXPLOSION
-};
+const int
+    ProjectileImgID[static_cast<std::size_t> (ProjectileType::PROJ_TYPE_CNT)]
+    = { IMGID_PEA, IMGID_EXPLOSION };
 
-const int ProjectileHarm[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  20,
-  1800,
-};
+const int
+    ProjectileHarm[static_cast<std::size_t> (ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        20,
+        1800,
+      };
 
-const int ProjectileVelocityX[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  8,
-  0,
-};
+const int ProjectileVelocityX[static_cast<std::size_t> (
+    ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        8,
+        0,
+      };
 
-const int ProjectileVelocityY[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  0,
-  0,
-};
+const int ProjectileVelocityY[static_cast<std::size_t> (
+    ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        0,
+        0,
+      };
 
-const int ProjectileAccecerationX[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  0,
-  0,
-};
+const int ProjectileAccecerationX[static_cast<std::size_t> (
+    ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        0,
+        0,
+      };
 
-const int ProjectileAccecerationY[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  0,
-  0,
-};
+const int ProjectileAccecerationY[static_cast<std::size_t> (
+    ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        0,
+        0,
+      };
 
-const int ProjectileWidth[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  28,
-  3 * LAWN_GRID_WIDTH,
-};
+const int
+    ProjectileWidth[static_cast<std::size_t> (ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        28,
+        3 * LAWN_GRID_WIDTH,
+      };
 
-const int ProjectileHeight[static_cast<std::size_t>(ProjectileType::PROJ_TYPE_CNT)] = {
-  28,
-  3 * LAWN_GRID_HEIGHT,
-};
+const int
+    ProjectileHeight[static_cast<std::size_t> (ProjectileType::PROJ_TYPE_CNT)]
+    = {
+        28,
+        3 * LAWN_GRID_HEIGHT,
+      };
 
 const int SHOOTER_INTERVAL = 30;
 const int BULLET_INTERVAL = 5;
