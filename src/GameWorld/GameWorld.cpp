@@ -12,12 +12,13 @@
 #include "Wallnut.hpp"
 #include "Shovel.hpp"
 #include "Zombie.hpp"
-#include "ZombieRegular.hpp"
+#include "RegularZombie.hpp"
 #include "Pea.hpp"
 #include "PeaShooter.hpp"
 #include "Repeater.hpp"
 #include "CherryBomb.hpp"
 #include "Pow.hpp"
+#include "BucketHeadZombie.hpp"
 #include <memory>
 
 GameWorld::GameWorld() {}
@@ -47,18 +48,18 @@ void GameWorld::Init() {
   m_currentCoolDownMask = nullptr;
   
   // Step 6: init sun counter
-  m_sunCnt = 1000;
+  m_sunCnt = 5000;
   m_sunText = std::make_shared<TextBase>(SUN_CNT_COL_CENTER, SUN_CNT_ROW_CENTER, std::to_string(m_sunCnt));
   
   // Step 7: init sun generator
   m_natural_sun_timer = std::make_shared<Timer>(NATUAL_SUN_DROP_INITIAL);
   m_natural_sun_timer -> StartTimer();
   
-  spawnZombieAt(1);
-  spawnZombieAt(1);
-  spawnZombieAt(1);
-  spawnZombieAt(1);
-  spawnZombieAt(1);
+  // Step 8: init wave counter
+  m_wave = 0;
+  m_wave_timer=std::make_shared<Timer>(INITIAL_WAVE);
+  m_wave_timer -> StartTimer();
+  m_waveText = nullptr;
 }
 
 LevelStatus GameWorld::Update() {
@@ -69,15 +70,26 @@ LevelStatus GameWorld::Update() {
     spawnNaturalSun();
     m_natural_sun_timer -> SetTimer(NATUAL_SUN_DROP_INTERVAL);
   }
-  
-  // Step 2: update all objects.
+  // Step 2: generate wave if possible
+  m_wave_timer -> Update();
+  if ((m_wave && m_zombie_it_list.empty()) || m_wave_timer -> isTimingEnded()){
+    m_wave ++;
+    m_wave_timer -> SetTimer(std::max(150, 600 - 20 * m_wave));
+    int zombie_cnt = (15 + m_wave) / 10;
+    for(int i = 1; i <= zombie_cnt; i ++)
+    {
+      spawnZombieAt(randInt(1, 5), randInt(WINDOW_WIDTH - 40, WINDOW_WIDTH - 1), randInt(1, 3 * std::max(0, m_wave - 15) + P_REGULAR_ZOMBIE) <= P_REGULAR_ZOMBIE? ZombieType::ZOMBIE_REGULAR: ZombieType::ZOMBIE_BUCKET);
+    }
+  }
+    
+  // Step 3: update all objects.
   for(auto& gameObject: m_object_list)
     gameObject -> Update();
   
-  // Step 3: update zombie collision states.
+  // Step 4: update zombie collision states.
   UpdateZombieState();
   
-  // Step 4: remove all dead objects.
+  // Step 5: remove all dead objects.
   for(auto it = m_object_list.begin(); it != m_object_list.end();)
   {
     if((*it) -> isDead())
@@ -92,10 +104,12 @@ LevelStatus GameWorld::Update() {
     else ++it;
   }
   
-  //  Step 5: detect if losing.
+  //  Step 6: detect if losing.
   for(auto& zombie_it:m_zombie_it_list){
-    if((*zombie_it) -> GetX() < 0)
+    if((*zombie_it) -> GetX() < 0){
+      m_waveText = std::make_shared<TextBase>(WAVE_TEXT_X, WAVE_TEXT_Y, std::to_string(m_wave - 1), 1, 1, 1);
       return LevelStatus::LOSING;
+    }
   }
   return LevelStatus::ONGOING;
 }
@@ -114,7 +128,10 @@ void GameWorld::CleanUp() {
   m_zombie_it_list.clear();
   //  Step 5: remove the background.
   m_background = nullptr;
-  
+  //  Step 6: clear up the timer.
+  m_wave_timer = nullptr;
+  //  Step 7: reset the wave text.
+  m_waveText = nullptr;
 }
 
 bool GameWorld::TryHoldSeed(const Seed* pSeed){
@@ -264,10 +281,13 @@ void GameWorld::spawnZombieAt(int row_y, int x, ZombieType type){
   m_row_zombie_cnt[row_y]++;
   switch (type) {
     case ZombieType::ZOMBIE_REGULAR:
-      m_object_list.push_back(std::make_shared<ZombieRegular>(shared_from_this(), row_y, x));
+      m_object_list.push_back(std::make_shared<RegularZombie>(shared_from_this(), row_y, x));
       m_zombie_it_list.push_back(std::prev(m_object_list.end()));
       break;
-      
+    case ZombieType::ZOMBIE_BUCKET:
+      m_object_list.push_back(std::make_shared<BucketHeadZombie>(shared_from_this(), row_y, x));
+      m_zombie_it_list.push_back(std::prev(m_object_list.end()));
+      break;
     default:
       break;
   }

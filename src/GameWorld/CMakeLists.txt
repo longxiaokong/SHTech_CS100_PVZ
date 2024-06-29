@@ -19,7 +19,8 @@ target_link_libraries(
   Wallnut
   Shovel
   Zombie
-  ZombieRegular
+  RegularZombie
+  BucketHeadZombie
   Pea
   Shooter
   CherryBomb
@@ -41,7 +42,8 @@ target_include_directories(
   ${CMAKE_SOURCE_DIR}/src/Wallnut/
   ${CMAKE_SOURCE_DIR}/src/Shovel/
   ${CMAKE_SOURCE_DIR}/src/Zombie/
-  ${CMAKE_SOURCE_DIR}/src/ZombieRegular/
+  ${CMAKE_SOURCE_DIR}/src/RegularZombie/
+  ${CMAKE_SOURCE_DIR}/src/BucketHeadZombie/
   ${CMAKE_SOURCE_DIR}/src/Pea/
   ${CMAKE_SOURCE_DIR}/src/Shooter/
   ${CMAKE_SOURCE_DIR}/src/CherryBomb/

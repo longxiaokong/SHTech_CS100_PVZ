@@ -49,12 +49,13 @@ add_subdirectory(src/Sunflower/)
 add_subdirectory(src/Wallnut/)
 add_subdirectory(src/Shovel/)
 add_subdirectory(src/Zombie/)
-add_subdirectory(src/ZombieRegular/)
+add_subdirectory(src/RegularZombie/)
 add_subdirectory(src/Projectile/)
 add_subdirectory(src/Pea/)
 add_subdirectory(src/Pow/)
 add_subdirectory(src/Shooter/)
 add_subdirectory(src/CherryBomb/)
+add_subdirectory(src/BucketHeadZombie/)
 #↑↑↑↑↑↑↑↑↑↑↑ ADD YOUR SUBDIRECTORIES HERE ↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 add_executable(

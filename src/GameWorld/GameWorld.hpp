@@ -79,10 +79,13 @@ private:
   std::size_t m_holdingFromSlot = -1;
   unsigned m_sunCnt = 100;
   std::shared_ptr<TextBase> m_sunText = nullptr;
+  std::shared_ptr<TextBase> m_waveText = nullptr;
   std::shared_ptr<CoolDownMask> m_currentCoolDownMask;
   std::shared_ptr<Timer> m_natural_sun_timer;
   std::list<std::list<std::shared_ptr<GameObject> >::iterator> m_zombie_it_list;
   int m_row_zombie_cnt[6] = {0};
+  int m_wave;
+  std::shared_ptr<Timer> m_wave_timer;
   bool m_holding_shovel;
 };
 

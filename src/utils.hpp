@@ -137,7 +137,7 @@ const unsigned seedCost[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
 };
 
 const ImageID plantImageID[static_cast<int>(PlantType::PLANT_TYPE_CNT)] = {
-  IMGID_SUN,
+  IMGID_NONE,
   IMGID_SUNFLOWER,
   IMGID_PEASHOOTER,
   IMGID_WALLNUT,
@@ -257,4 +257,9 @@ const int BULLET_INTERVAL = 5;
 
 const int CHERRY_BOMB_LIFETIME = 15;
 
+const int INITIAL_WAVE = 1200;
+
+const int P_REGULAR_ZOMBIE = 20;
+const int WAVE_TEXT_X = 330;
+const int WAVE_TEXT_Y = 50;
 #endif // !UTILS_HPP__

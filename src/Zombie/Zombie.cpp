@@ -13,4 +13,5 @@ Zombie::Zombie(pGameWorld pWorld, ZombieType type, int row_y, int initial_x, int
 void Zombie::UpdateArbitrary(){
   if(m_is_eating) SetVelocityX(0);
   else SetVelocityX(m_original_velocity);
+  UpdateZombieState();
 }
