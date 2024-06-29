@@ -11,11 +11,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class Background : public GameObject,
-                   public std::enable_shared_from_this<Background>
+class Background : public GameObject
 {
 public:
-  using std::enable_shared_from_this<Background>::shared_from_this;
   Background (pGameWorld pWorld);
   virtual ~Background () = default;
   virtual void

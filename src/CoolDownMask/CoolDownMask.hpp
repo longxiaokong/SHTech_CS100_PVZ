@@ -12,11 +12,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class CoolDownMask : public Slot,
-                     public std::enable_shared_from_this<CoolDownMask>
+class CoolDownMask : public Slot
 {
 public:
-  using std::enable_shared_from_this<CoolDownMask>::shared_from_this;
   CoolDownMask (pGameWorld pWorld, int slot, PlantType type);
   virtual ~CoolDownMask () = default;
   virtual void

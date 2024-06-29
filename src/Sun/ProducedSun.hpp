@@ -11,11 +11,9 @@
 #include "Sun.hpp"
 #include "Timer.hpp"
 
-class ProducedSun : public Sun,
-                    public std::enable_shared_from_this<ProducedSun>
+class ProducedSun : public Sun
 {
 public:
-  using std::enable_shared_from_this<ProducedSun>::shared_from_this;
   ProducedSun (pGameWorld, int, int, int);
   virtual void UpdateMoveStatus () override;
   virtual ~ProducedSun () = default;

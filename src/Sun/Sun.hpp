@@ -10,10 +10,9 @@
 #include "MovingObject.hpp"
 #include "Timer.hpp"
 
-class Sun : public MovingObject, public std::enable_shared_from_this<Sun>
+class Sun : public MovingObject
 {
 public:
-  using std::enable_shared_from_this<Sun>::shared_from_this;
   Sun (pGameWorld pWorld, int initial_x, int initial_y,
        int worth = SUN_VALUE_DEFAULT, int velocity_x = 0, int velocity_y = 0,
        int acceleration_x = 0, int acceleration_y = 0, int lifetime = 300);

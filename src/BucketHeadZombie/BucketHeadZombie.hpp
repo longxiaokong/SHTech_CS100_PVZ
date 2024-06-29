@@ -11,11 +11,9 @@
 #include "Zombie.hpp"
 #include "utils.hpp"
 
-class BucketHeadZombie : public Zombie,
-                         public std::enable_shared_from_this<BucketHeadZombie>
+class BucketHeadZombie : public Zombie
 {
 public:
-  using std::enable_shared_from_this<BucketHeadZombie>::shared_from_this;
   BucketHeadZombie (pGameWorld, int, int initial_X = WINDOW_WIDTH - 1,
                     int velocity_X = ZOMBIE_VELOCITY_REGULAR);
   virtual void UpdateZombieState () override;

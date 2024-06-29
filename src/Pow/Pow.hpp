@@ -10,10 +10,9 @@
 
 #include "Projectile.hpp"
 #include "Timer.hpp"
-class Pow : public Projectile, public std::enable_shared_from_this<Pow>
+class Pow : public Projectile
 {
 public:
-  using std::enable_shared_from_this<Pow>::shared_from_this;
   Pow (pGameWorld pWorld, int initial_x, int initial_y);
   virtual ~Pow () = default;
   virtual bool isDead () override;

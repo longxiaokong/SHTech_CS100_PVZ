@@ -12,11 +12,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class MovingObject : public GameObject,
-                     public std::enable_shared_from_this<MovingObject>
+class MovingObject : public GameObject
 {
 public:
-  using std::enable_shared_from_this<MovingObject>::shared_from_this;
   MovingObject (pGameWorld, ImageID, int, int, LayerID, int, int, AnimID, int,
                 int, int, int);
   virtual void Update () override;

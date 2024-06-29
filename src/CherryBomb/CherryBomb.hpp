@@ -10,11 +10,9 @@
 
 #include "Plant.hpp"
 #include "Timer.hpp"
-class CherryBomb : public Plant,
-                   public std::enable_shared_from_this<CherryBomb>
+class CherryBomb : public Plant
 {
 public:
-  using std::enable_shared_from_this<CherryBomb>::shared_from_this;
   CherryBomb (pGameWorld pWorld, int x, int y);
   virtual ~CherryBomb ();
   virtual void Update () override;

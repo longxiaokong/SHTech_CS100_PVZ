@@ -12,10 +12,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 // Used to create empty grids. Strange, but a way to rest.
-class Plant : public GameObject, public std::enable_shared_from_this<Plant>
+class Plant : public GameObject
 {
 public:
-  using std::enable_shared_from_this<Plant>::shared_from_this;
   Plant (pGameWorld pWorld, PlantType type, int x, int y);
   ~Plant ();
   virtual void Update () override {};

@@ -13,10 +13,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class Shovel : public GameObject, public std::enable_shared_from_this<Shovel>
+class Shovel : public GameObject
 {
 public:
-  using std::enable_shared_from_this<Shovel>::shared_from_this;
   Shovel (pGameWorld pWorld);
   virtual ~Shovel () = default;
   virtual void

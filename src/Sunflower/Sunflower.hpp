@@ -11,10 +11,9 @@
 #include "Plant.hpp"
 #include "Timer.hpp"
 
-class Sunflower : public Plant, public std::enable_shared_from_this<Sunflower>
+class Sunflower : public Plant
 {
 public:
-  using std::enable_shared_from_this<Sunflower>::shared_from_this;
   Sunflower (pGameWorld pWorld, int x, int y);
   virtual ~Sunflower () = default;
   virtual void Update () override;

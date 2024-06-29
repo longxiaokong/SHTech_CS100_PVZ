@@ -11,11 +11,9 @@
 #include "MovingObject.hpp"
 #include "utils.hpp"
 
-class Projectile : public MovingObject,
-                   public std::enable_shared_from_this<Projectile>
+class Projectile : public MovingObject
 {
 public:
-  using std::enable_shared_from_this<Projectile>::shared_from_this;
   Projectile (pGameWorld pWorld, int initial_x, int initial_y,
               ProjectileType type);
   virtual void OnClick () override {};

@@ -10,10 +10,9 @@
 
 #include "Plant.hpp"
 #include "Timer.hpp"
-class Repeater : public Plant, public std::enable_shared_from_this<Repeater>
+class Repeater : public Plant
 {
 public:
-  using std::enable_shared_from_this<Repeater>::shared_from_this;
   Repeater (pGameWorld pWorld, int x, int y);
   virtual ~Repeater () = default;
   virtual void Update () override;

@@ -14,10 +14,9 @@
 class GameWorld;
 using pGameWorld = std::shared_ptr<GameWorld>;
 
-class Slot : public GameObject, public std::enable_shared_from_this<Slot>
+class Slot : public GameObject
 {
 public:
-  using std::enable_shared_from_this<Slot>::shared_from_this;
   Slot (pGameWorld pWorld, unsigned slot, PlantType type, LayerID layer,
         ImageID img);
   virtual ~Slot () = default;
